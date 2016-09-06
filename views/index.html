@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prueba athinker</title>
+	<style type="text/css">
+		#user-list {
+			border: 1px solid lightgrey;
+			padding: 10px;
+			width: 300px;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			margin: auto;
+			border-radius: 3px;
+		}
+
+		#user-list li {
+			padding: 10px;
+			text-align: center;
+		}
+
+		#user-list li:hover {
+			background: lightgrey;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+
+	<ul id="user-list"></ul>
+	<button class="sync">Synchronize</button>
+
+	<button class="insert-user">Insert new user</button>
+
+	<script type="text/javascript" src="javascripts/app/core/athinker.core.js"></script>
+	<script type="text/javascript" src="javascripts/app/core/athinker.model.js"></script>
+	<script type="text/javascript" src="javascripts/app/core/athinker.repository.js"></script>
+	<script type="text/javascript" src="javascripts/app/libs/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="javascripts/app/testmodel.js"></script>
+	<script type="text/javascript" src="javascripts/app/testrepository.js"></script>
+	<script type="text/javascript" src="javascripts/app/testjsreal.js"></script>
+</body>
+</html>
