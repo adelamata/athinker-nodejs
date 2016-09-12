@@ -65,13 +65,14 @@
 
 				function parseAttributes (attrs) {
 					var parsedAttributes = [];
-					if (typeof attrs === 'array') {
-						if (attrs.length > 1) {
-							for (a in attrs) {
-								parsedAttributes [attrs[a]] = "";
-							}
+
+					if (attrs.length && attrs.length > 1) {
+						for (a in attrs) {
+							parsedAttributes [attrs[a]] = "";
 						}
 					}
+					
+					return parsedAttributes;
 				};
 			},
 
