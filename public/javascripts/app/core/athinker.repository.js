@@ -3,7 +3,7 @@
 		 * @type {Object}
 		 */
 		athinker.core.repository = {
-
+            
 			/**
 			 * [extend description]
 			 * @param  {[type]} properties [description]

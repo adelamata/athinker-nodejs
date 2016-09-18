@@ -23,14 +23,30 @@
 			background: lightgrey;
 			cursor: pointer;
 		}
+        
+        fieldset {border: none;}
+        fieldset label,
+        fieldset input {display: block; padding: 5px;}
 	</style>
 </head>
 <body>
 
 	<ul id="user-list"></ul>
 	<button class="sync">Synchronize</button>
-
-	<button class="insert-user">Insert new user</button>
+    
+    <fieldset id="new-user">
+        <label>Name</label>
+        <input type="text" class="name">
+        <label>Last Name</label>
+        <input type="text" class="lastname">
+        <label>Phone</label>
+        <input type="text" class="phone">
+        <label>Other</label>
+        <input type="text" class="other">
+        <button class="insert-user">Insert new user</button>
+    </fieldset>
+    
+	
 
 	<script type="text/javascript" src="javascripts/app/core/athinker.core.js"></script>
 	<script type="text/javascript" src="javascripts/app/core/athinker.model.js"></script>

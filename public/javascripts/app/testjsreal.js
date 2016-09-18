@@ -40,10 +40,16 @@
 
 
 		insertUserBtn.click (function () {
-			myNewModel 	= new User ("User 1");
-			myNewModel.setData({"user" : "New user"});
+            var name = $('#new-user').find('.name').val(),
+                lastName = $('#new-user').find('.lastname').val(),
+                phone = $('#new-user').find('.phone').val(),
+                other = $('#new-user').find('.other').val();
+            
+            
+			myNewModel 	= new User (name);
+			myNewModel.setData({"name" : name, "lastname": lastName, "phone" : phone, "other" : other});
+
 			myNewModel.create();
-			userRepository.synchronize ();
 		});
 
 
