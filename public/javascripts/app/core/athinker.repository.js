@@ -23,7 +23,8 @@
 						this.name    	= repositoryName;
 						this.records 	= [];
 						this.callbacks	= {
-							synchronize : null
+							"synchronize" : function () {},
+                            "clear"       : function () {}
 						};
 
 					};
@@ -66,11 +67,12 @@
 			 * @type {Object}
 			 */
 			_operation  : {
-				"synchronize"	: function (throwEvent) {
+				"synchronize"	: function () {
 					athinker.logger("athinker::core:repository::" + this.name,
 						"info", 
 						"synchronize");
-					this._doRequest.call (this,"synchronize", throwEvent || true);
+                    
+					this._doRequest.call (this, "synchronize");
 				}
 			},
 
@@ -104,51 +106,43 @@
 			 * @param  {[type]} throwEvent [description]
 			 * @return {[type]}            [description]
 			 */
-			_doRequest : function (type, throwEvent) {
+			_doRequest : function (type) {
 				var self = this;
 
 				//
 				// Send warning of requesting
-				athinker.logger("athinker::core:repository::" + this.name, 
+				athinker.logger("athinker::core:repository::" + self.name, 
 					"info", 
-					this.name + " is doing request. Type [" + type + "].");
+					self.name + " is doing request. Type [" + type + "].");
 				
 				$.ajax ({
-					url       : "api/" + this.url + "/" + type,
+					url       : "api/" + self.url + "/" + type,
 					dataType  : 'json',
 					success   : function (progress) {
-
 						if (progress.OK) {
-
 							self._storeData (progress.response);
-
-							if (throwEvent) {
-								if (self.callbacks [type])
-								self.callbacks [type].call (self, self.records);
-							}
-							
-
 						}else if (progress.FAIL) {
 
 						}else {
 
 						}
+                        
+                        self.callbacks [type].call (self, progress.response);
 					},
 					error : function (error) {
 						console.log (error);
 					}
 				});
 			},
-
-			/**
-			 * [onSynchronize description]
-			 * @param  {Function} fn [description]
-			 * @return {[type]}      [description]
-			 */
-			onSynchronize : function (fn) {
-				var self = this;
-				if (fn) self.callbacks.synchronize = fn;
-			},
+            
+            
+            
+            on : function (event, callback) {
+                var self = this;
+                if (self.callbacks [event]) {
+                    self.callbacks [event] = callback;
+                }
+            },
 
 
 
@@ -157,10 +151,17 @@
 			 * @param  {[type]} throwEvent [description]
 			 * @return {[type]}            [description]
 			 */
-			synchronize : function (throwEvent) {
+			synchronize : function () {
 				var self = this;
-				self._operation.synchronize.call (self, throwEvent);
+				self._operation.synchronize.call (self);
 			},
+            
+            
+            clear : function () {
+                var self = this;
+                self.records = [];
+                self.callbacks.clear.call (self);
+            },
 
 			/**
 			 * [getRecords description]

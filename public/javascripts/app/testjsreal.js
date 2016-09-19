@@ -10,32 +10,19 @@
 		var list    	   = $("#user-list");
 
 		
-
-
-
-		//
-		// User repository on synchronize
-		userRepository.onSynchronize (function (records) {
-			
-			//
-			// Clean list
-			list.empty();
-
-			//
-			// Repaint list
-			$.each (records, function (index, element) {
-				console.log (element.attr('name'));
-				list.append ("<li>" + element.attr('name') + "</li>");
-			});	
-
-
-		});
-
-
-
+        
+        userRepository.on('clear', function () {
+            console.log ("clear");
+        });
+        
+         userRepository.on('synchronize', function (data) {
+            console.log (userRepository.getRecords());
+        });
+        
+        
 
 		syncBtn.click (function () {
-			userRepository.synchronize ();
+            userRepository.synchronize ();
 		});
 
 

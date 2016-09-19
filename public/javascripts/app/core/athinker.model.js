@@ -31,7 +31,6 @@ athinker.core.model = {
                 this.currAttributesValues = {};
                 this.lastAttributesValues = {};
 
-
                 athinker.logger ("athinker::core::model::" + this.name, 
                     "info",
                     this.name + " model was created.");
@@ -40,8 +39,8 @@ athinker.core.model = {
 
 
             MODEL.prototype     		= athinker.utils.extend ({}, athinker.core.model);
-            MODEL.prototype._attributes = parseAttributes (properties);
-            MODEL.prototype._url 		= model.url;
+            MODEL.prototype.attributes = parseAttributes (properties);
+            MODEL.prototype.url 		= model.url;
 
 
             if (model.customizeMethods) {
@@ -83,16 +82,16 @@ athinker.core.model = {
      * [url description]
      * @type {String}
      */
-    _url         : '',
+    url         : '',
 
     /**
-     * [_attributes description]
+     * [attributes description]
      * @type {Array}
      */
-    _attributes : [],
+    attributes : [],
 
     /**
-     * [_operation description]
+     * [operation description]
      * @type {Object}
      */
     _operation  : {
@@ -143,7 +142,7 @@ athinker.core.model = {
             self.name + " is doing request. Type [" + type + "].");
 
         $.ajax ({
-            url     	: "api/" + self._url + "/" + type,
+            url     	: "api/" + self.url + "/" + type,
             data    	: data || {},
             method  	: 'post',
             dataType    : 'json',
@@ -206,8 +205,8 @@ athinker.core.model = {
      */
     attr : function (attr) {
         var self = this;
-        if (self._attributes[attr]) {
-            return self._attributes[attr];
+        if (self.attributes[attr]) {
+            return self.attributes[attr];
         }else {
             athinker.logger ("athinker::core:model::" + self.name,
                 "error", 
@@ -224,7 +223,7 @@ athinker.core.model = {
         var self = this;
         if (Object.keys (object).length > 0) {
             for (a in object) {
-                if (self._attributes.indexOf (a) !== -1) {
+                if (self.attributes.indexOf (a) !== -1) {
                     self.currAttributesValues [a] = object [a];
                 }
             }
