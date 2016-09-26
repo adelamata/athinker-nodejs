@@ -22,7 +22,7 @@
         
 
 		syncBtn.click (function () {
-            userRepository.synchronize ();
+            
 		});
 
 
@@ -37,6 +37,10 @@
 			myNewModel.setData({"name" : name, "lastname": lastName, "phone" : phone, "other" : other});
 
 			myNewModel.create();
+            
+            //
+            // Synchronize repository
+            userRepository.synchronize ();
 		});
 
 

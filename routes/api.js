@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 
-var usersStorage = [];
+var usersStorage = [{"name" : "Antonio", "lastName" : "de la Mata López", "phone" : "668580 375", "other" : "other"},
+                   {"name" : "Andrea", "lastName" : "Martín Morante", "phone" : "668580375", "other" : "other"}];
 
 router.get('/users/synchronize', function (req, res, next) {
 	res.json ({"OK" : "The operation was succesful.", "response" : usersStorage});
